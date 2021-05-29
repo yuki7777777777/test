@@ -6,6 +6,11 @@
     </head>
     <body>
         <h1 th:text="${title}"></h1>
+   <table>
+    <tr th:each="data : ${cardinforDataList}" th:object="${data}">
+      <td th:text="*{cardid}"></td>
+    </tr>
+  </table>
   <form action="hello2" method="post" >
   　<input type="submit" value="送信する">
   </form>

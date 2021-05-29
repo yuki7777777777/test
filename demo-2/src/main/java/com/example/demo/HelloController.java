@@ -10,14 +10,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HelloController {
+	@Autowired
+	CardinfoService cardinfoService;
+	
 	@RequestMapping(value = "/hello")
 	private String hello(Model model) {
+
 		// 気象データの取得
 		model.addAttribute("title", "Hello World!"); // Hello World!の表示
-		//List<Cardinfo> cardinforDataList = cardinfoService.findAllCardinfoData();
-		//String  rtn =  CommonMethod.keisan(cardinforDataList.get(0).getCardid());
-		//cardinforDataList.get(0).setCardid(rtn);
-		//model.addAttribute("cardinforDataList", cardinforDataList);
+		List<Cardinfo> cardinforDataList = cardinfoService.findAllCardinfoData();
+		String  rtn =  CommonMethod.keisan(cardinforDataList.get(0).getCardid());
+		cardinforDataList.get(0).setCardid(rtn);
+		model.addAttribute("cardinforDataList", cardinforDataList);
 		return "hello";
 
 	}
